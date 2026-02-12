@@ -1,0 +1,32 @@
+# Blog Content Directory
+
+This directory contains markdown blog posts.
+
+## File Format
+
+Each blog post should be a `.md` or `.mdx` file with YAML frontmatter:
+
+```markdown
+---
+title: "Your Post Title"
+date: "2026-02-12"
+description: "Brief description for SEO"
+tags: ["tag1", "tag2"]
+category: "development"
+published: true
+---
+
+Your content here...
+```
+
+## Frontmatter Fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| title | Yes | Post title |
+| date | Yes | Publication date (YYYY-MM-DD) |
+| description | Yes | SEO description (160 chars max) |
+| tags | No | Array of tags |
+| category | No | Post category |
+| published | No | Set to false to hide |
+| cover | No | Cover image path |
