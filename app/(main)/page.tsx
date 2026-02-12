@@ -3,9 +3,29 @@
  * Nearby attractions based on user location
  */
 
-import { SkeletonCard } from '@/components/ui';
+import { getUserLocation, getDefaultLocation } from '@/lib/api/geolocation';
+import { searchNearbyAttractions } from '@/lib/api/amap';
+import { AttractionGrid } from '@/components/features/attractions';
 
-export default function HomePage() {
+export default async function HomePage() {
+    // Get user location with fallback chain
+    let location = await getUserLocation();
+
+    if (!location) {
+        location = getDefaultLocation();
+    }
+
+    // Fetch nearby attractions based on location
+    const attractions = await searchNearbyAttractions(
+        { lat: location.lat, lng: location.lng },
+        { radius: 5000 }
+    );
+
+    // Format location display
+    const locationDisplay = location.city 
+        ? `${location.city}, ${location.country || ''}`
+        : `${location.lat.toFixed(2)}, ${location.lng.toFixed(2)}`;
+
     return (
         <div className="container mx-auto px-4 py-8">
             {/* Hero Section */}
@@ -21,9 +41,14 @@ export default function HomePage() {
             {/* Location Banner */}
             <section className="mb-8">
                 <div className="flex items-center justify-center gap-2 rounded-lg bg-zinc-100 px-4 py-3 dark:bg-zinc-800">
-                    <span className="text-sm text-zinc-600 dark:text-zinc-400">
-                        Detecting your location...
+                    <span className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                        Location: {locationDisplay}
                     </span>
+                    {location.source !== 'browser' && (
+                        <span className="text-xs text-zinc-500">
+                            ({location.source === 'ip' ? 'IP-based' : 'Default'})
+                        </span>
+                    )}
                 </div>
             </section>
 
@@ -32,11 +57,7 @@ export default function HomePage() {
                 <h2 className="mb-6 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
                     Nearby Attractions
                 </h2>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {Array.from({ length: 6 }).map((_, i) => (
-                        <SkeletonCard key={i} />
-                    ))}
-                </div>
+                <AttractionGrid attractions={attractions} />
             </section>
         </div>
     );

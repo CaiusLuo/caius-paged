@@ -24,7 +24,7 @@ export function AttractionCard({ attraction, className }: AttractionCardProps) {
             <div className="relative aspect-video overflow-hidden">
                 {photo ? (
                     <Image
-                        src={photo.thumbUrl}
+                        src={photo.url}
                         alt={photo.alt || attraction.name}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"

@@ -60,14 +60,16 @@ export function getBrowserLocation(): Promise<GeoLocation> {
  */
 export async function getIpLocation(): Promise<GeoLocation | null> {
     try {
-        const response = await fetch(ipLocationConfig.endpoint, {
+        const response = await fetch(ipLocationConfig.url, {
             next: {
                 revalidate: 3600, // Cache for 1 hour
             },
         });
 
         if (!response.ok) {
-            throw new Error(`IP location API error: ${response.status}`);
+            // Rate limit or other errors - return null to trigger default location
+            console.warn(`IP location API returned ${response.status}, using default location`);
+            return null;
         }
 
         const data: IpLocationResponse = await response.json();
@@ -84,7 +86,7 @@ export async function getIpLocation(): Promise<GeoLocation | null> {
             source: 'ip',
         };
     } catch (error) {
-        console.error('Failed to get IP location:', error);
+        console.warn('IP location lookup failed:', error);
         return null;
     }
 }
