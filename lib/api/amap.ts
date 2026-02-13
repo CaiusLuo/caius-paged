@@ -178,7 +178,7 @@ function transformPoiToAttraction(
             address: poi.address || '',
         },
         distance,
-        rating: poi.biz_ext?.rating ? parseFloat(poi.biz_ext.rating) : undefined,
+        rating: parseFloat(poi.biz_ext?.rating || '0') || undefined,
         category: poi.type.split(';')[0] || 'Attraction',
         tags: poi.type.split(';'),
         photos: poi.photos?.map((p) => ({

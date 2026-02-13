@@ -129,6 +129,6 @@ function toRadians(degrees: number): number {
  * @returns Formatted rating string (e.g., "4.5")
  */
 export function formatRating(rating: number | undefined): string {
-    if (rating === undefined) return 'N/A';
+    if (rating === undefined || rating === null) return 'N/A';
     return rating.toFixed(1);
 }
