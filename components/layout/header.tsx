@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { siteConfig, mainNav } from '@/app/config';
 import { ThemeToggle } from './theme-toggle';
+import TypewriterTyped from '../ui/TypewriterTyped';
 
 export function Header() {
     const pathname = usePathname();
@@ -21,11 +22,7 @@ export function Header() {
         <header className="sticky top-0 z-50 w-full border-b border-zinc-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-zinc-800 dark:bg-zinc-950/95">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
-                        {siteConfig.metadata.name}
-                    </span>
-                </Link>
+                <TypewriterTyped />
 
                 {/* Desktop Navigation */}
                 <nav className="hidden items-center gap-6 md:flex">
