@@ -54,7 +54,8 @@ export async function searchNearbyAttractions(
             throw new Error(`Amap API error: ${data.info}`);
         }
 
-        return data.pois.map((poi) => transformPoiToAttraction(poi, location));
+        return data.pois.map((poi) => transformPoiToAttraction(poi, location))
+            .sort((a, b) => (b.rating || 0) - (a.rating || 0));
     } catch (error) {
         console.error('Failed to fetch nearby attractions from Amap:', error);
         return [];
