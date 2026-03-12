@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Routes Configuration
  * Centralized route definitions to avoid hardcoded strings
  */
@@ -71,25 +71,25 @@ export interface RouteMetadata {
 export const routeMetadata: Record<string, RouteMetadata> = {
     [routes.home]: {
         title: 'Home',
-        description: 'Discover nearby attractions based on your location',
+        description: 'Share technology, thought, and everyday discoveries',
         showInNav: true,
         keywords: ['attractions', 'nearby', 'explore', 'location'],
     },
     [routes.explore.index]: {
         title: 'Explore',
-        description: 'Search and discover amazing attractions',
+        description: 'Use maps to explore nearby places and everyday beauty',
         showInNav: true,
         keywords: ['search', 'attractions', 'discover', 'explore'],
     },
     [routes.blog.index]: {
         title: 'Blog',
-        description: 'Technical articles and development insights',
+        description: 'Technical notes, project writing, and reflections',
         showInNav: true,
         keywords: ['blog', 'articles', 'tech', 'development'],
     },
     [routes.about]: {
         title: 'About',
-        description: 'Learn more about me and this project',
+        description: 'Learn more about the person and ideas behind this site',
         showInNav: true,
         keywords: ['about', 'portfolio', 'developer'],
     },
@@ -149,3 +149,4 @@ export function buildUrl(
 // ============================================
 
 export type Routes = typeof routes;
+

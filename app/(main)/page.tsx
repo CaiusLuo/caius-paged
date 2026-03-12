@@ -16,23 +16,23 @@ import { formatDate } from '@/lib/utils';
 
 const focusAreas = [
     {
-        title: 'Agent Workflows',
-        description: 'Shipping practical automation, debugging flows, and product experiments that stay grounded in delivery.',
+        title: 'Technical Practice',
+        description: 'Sharing practical automation, debugging lessons, and delivery-minded engineering work.',
     },
     {
-        title: 'Full-Stack Systems',
-        description: 'Building Next.js experiences that connect product polish with stable backend thinking and clean interfaces.',
+        title: 'Thoughtful Products',
+        description: 'Building interfaces and systems that feel clear, useful, and warm in everyday use.',
     },
     {
-        title: 'Technical Notes',
-        description: 'Turning daily engineering problems into reusable write-ups so the learning compounds instead of disappearing.',
+        title: 'Life and Curiosity',
+        description: 'Writing down technical insights, personal reflections, and small discoveries worth keeping.',
     },
 ];
 
 const currentTracks = [
-    'Location-aware interfaces',
-    'Knowledge capture with Markdown notes',
-    'Modern portfolio storytelling',
+    'Technical writing that stays close to real work',
+    'Product experiences with warmth and clarity',
+    'Maps, places, and everyday discovery',
 ];
 
 export default function HomePage() {
@@ -50,7 +50,7 @@ export default function HomePage() {
                     <div className="space-y-6">
                         <Badge variant="outline" size="md" className="hero-badge">
                             <Sparkles className="h-3.5 w-3.5" />
-                            Personal portfolio, notes, and exploration lab
+                            Technology, reflections, and everyday discovery
                         </Badge>
 
                         <div className="space-y-4">
@@ -58,20 +58,20 @@ export default function HomePage() {
                                 Caius / Full-stack builder
                             </p>
                             <h1 className="max-w-4xl text-5xl font-semibold tracking-tight text-[color:var(--foreground)] sm:text-6xl lg:text-7xl">
-                                A personal homepage that leads with identity, then opens into notes and map-based discovery.
+                                Sharing technology and ideas, leaving traces with warmth, and exploring the beauty of life.
                             </h1>
                             <p className="max-w-2xl text-lg leading-8 text-[color:var(--muted)]">
-                                I build modern product interfaces, write down the engineering lessons that matter, and keep a live attraction search experience as part of the site.
+                                I use this space to share technical lessons, record ideas that matter, and stay open to the small discoveries that make everyday life beautiful.
                             </p>
                         </div>
 
                         <div className="flex flex-wrap gap-3">
                             <Link href="/blog" className="action-link action-link-primary">
-                                Browse notes
+                                Read notes
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                             <Link href="/explore" className="action-link action-link-secondary">
-                                Open location search
+                                Explore the map
                                 <Compass className="h-4 w-4" />
                             </Link>
                             <Link href={authorInfo.github} className="action-link action-link-secondary" target="_blank" rel="noreferrer noopener">
@@ -91,11 +91,11 @@ export default function HomePage() {
                             </div>
                             <div className="stat-card">
                                 <span className="stat-value">3</span>
-                                <span className="stat-label">Current focus tracks</span>
+                                <span className="stat-label">Current themes</span>
                             </div>
                             <div className="stat-card">
                                 <span className="stat-value">24/7</span>
-                                <span className="stat-label">Portfolio online</span>
+                                <span className="stat-label">Always open</span>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ export default function HomePage() {
                         <div className="highlight-card animate-float-slow">
                             <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
                                 <NotebookTabs className="h-4 w-4" />
-                                Current tracks
+                                Current themes
                             </div>
                             <div className="mt-5 space-y-3">
                                 {currentTracks.map((track) => (
@@ -118,13 +118,13 @@ export default function HomePage() {
                         <div className="highlight-card animate-float-delayed">
                             <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
                                 <MapPinned className="h-4 w-4" />
-                                Site direction
+                                Why this site
                             </div>
                             <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">
-                                The homepage now acts as a personal landing page first. The location search stays available as a dedicated experience and as a live section below.
+                                This homepage is meant to feel personal first: a place for technology, thought, and a gentle sense of discovery, with maps as one part of that story.
                             </p>
                             <Link href="/explore" className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:gap-3">
-                                Jump into explore
+                                Step into discovery
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
@@ -146,13 +146,13 @@ export default function HomePage() {
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <p className="text-sm font-medium uppercase tracking-[0.24em] text-zinc-400">Latest writing</p>
-                        <h2 className="mt-3 text-3xl font-semibold text-[color:var(--foreground)]">Featured technical notes</h2>
+                        <h2 className="mt-3 text-3xl font-semibold text-[color:var(--foreground)]">Featured notes and reflections</h2>
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-[color:var(--muted)]">
-                            Markdown notes are rendered as readable documents, so project learnings and troubleshooting records feel like a real knowledge base instead of plain text dumps.
+                            A growing archive of engineering lessons, build notes, and reflections, presented clearly enough to revisit and share.
                         </p>
                     </div>
                     <Link href="/blog" className="action-link action-link-secondary shrink-0">
-                        View all notes
+                        View all writing
                         <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
@@ -197,14 +197,14 @@ export default function HomePage() {
             <section className="section-panel location-panel">
                 <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
-                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-zinc-400">Location playground</p>
-                        <h2 className="mt-3 text-3xl font-semibold text-[color:var(--foreground)]">Search nearby places without losing the personal homepage focus</h2>
+                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-zinc-400">Everyday discovery</p>
+                        <h2 className="mt-3 text-3xl font-semibold text-[color:var(--foreground)]">Maps stay here as a way to notice places, moments, and the beauty around everyday life</h2>
                         <p className="mt-3 max-w-2xl text-sm leading-7 text-[color:var(--muted)]">
-                            The original geo-based experience stays intact. It now sits as a secondary module on the homepage and remains fully available on the explore page.
+                            The map experience is still fully here, now framed less as a utility and more as part of how I explore, observe, and enjoy the world.
                         </p>
                     </div>
                     <Link href="/explore" className="action-link action-link-primary shrink-0">
-                        Open full explore page
+                        Open the full discovery page
                         <ArrowRight className="h-4 w-4" />
                     </Link>
                 </div>
@@ -214,5 +214,7 @@ export default function HomePage() {
         </div>
     );
 }
+
+
 
 

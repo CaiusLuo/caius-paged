@@ -16,12 +16,12 @@ export default function BlogPage() {
 
                 <div className="relative grid gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
                     <div>
-                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-[color:var(--muted)]">Knowledge base</p>
+                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-[color:var(--muted)]">Notes & reflections</p>
                         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[color:var(--foreground)] sm:text-5xl">
-                            Notes and technical documents rendered directly from Markdown.
+                            Technical notes, project write-ups, and reflections rendered directly from Markdown.
                         </h1>
                         <p className="mt-4 max-w-3xl text-base leading-8 text-[color:var(--muted)]">
-                            This page now reads local Markdown files, so copied notes and project write-ups can become a polished reading experience without extra formatting work.
+                            A place to share engineering lessons, working notes, and thoughts worth keeping close.
                         </p>
                         <div className="mt-6 flex flex-wrap gap-2">
                             {tags.length > 0 ? (
@@ -40,7 +40,7 @@ export default function BlogPage() {
                         <div className="space-y-4">
                             <div className="flex items-center gap-3 text-sm font-medium text-[color:var(--muted)]">
                                 <Notebook className="h-4 w-4" />
-                                Reading overview
+                                Reading snapshot
                             </div>
                             <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
                                 <div className="stat-card">
@@ -57,7 +57,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                             <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:gap-3">
-                                Back to homepage
+                                Back to home
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
@@ -68,14 +68,14 @@ export default function BlogPage() {
             <section className="section-panel space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <h2 className="text-2xl font-semibold text-[color:var(--foreground)]">All notes</h2>
+                        <h2 className="text-2xl font-semibold text-[color:var(--foreground)]">All writing</h2>
                         <p className="mt-2 text-sm text-[color:var(--muted)]">
-                            Browse troubleshooting records, architecture notes, and project reflections.
+                            Browse troubleshooting records, architecture thinking, and reflections from building and everyday life.
                         </p>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-[color:var(--muted)]">
                         <BookOpenText className="h-4 w-4" />
-                        Markdown-first reading experience
+                        Readable Markdown archive
                     </div>
                 </div>
 
@@ -86,22 +86,23 @@ export default function BlogPage() {
                 <div className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-6 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
                     <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
                         <Radar className="h-4 w-4" />
-                        Why this changed
+                        Why this page matters
                     </div>
                     <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">
-                        Notes are no longer treated like generic blog placeholders. They now read as documentation assets and inherit cleaner layout, spacing, and code block styles.
+                        These notes are meant to feel like living memory instead of placeholder posts, so the writing can carry both technical detail and personal thought.
                     </p>
                 </div>
                 <div className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-6 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
                     <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
                         <Notebook className="h-4 w-4" />
-                        Source folders
+                        How the writing stays close
                     </div>
                     <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">
-                        The site reads from the project content folder and also supports your external notes directory, so you can wire the documents in without rewriting the page layer again.
+                        The site reads local content directly, making it easy to keep sharing ideas, project notes, and reflections without extra publishing overhead.
                     </p>
                 </div>
             </section>
         </div>
     );
 }
+

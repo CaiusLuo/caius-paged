@@ -5,8 +5,8 @@
 
 export const siteMetadata = {
     name: 'Caius Paged',
-    title: 'Caius | Personal Portfolio & Technical Notes',
-    description: 'Personal homepage with technical notes and location-aware exploration.',
+    title: 'Caius | Technology, Thoughts & Everyday Discovery',
+    description: 'A personal site for sharing technology and thought, leaving warm traces, and exploring the beauty of everyday life.',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     locale: 'en-US',
     themeColor: '#0f172a',
@@ -44,8 +44,8 @@ export interface NavItem {
 
 export const mainNav: NavItem[] = [
     { title: 'Home', href: '/' },
-    { title: 'Explore', href: '/explore' },
     { title: 'Notes', href: '/blog' },
+    { title: 'Explore', href: '/explore' },
     { title: 'About', href: '/about' },
 ];
 
@@ -78,5 +78,6 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
 
 
