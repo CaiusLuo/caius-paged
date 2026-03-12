@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Application Constants
  * Centralized configuration values used throughout the app
  */
@@ -114,6 +114,9 @@ export const BLOG = {
     /** Content directory relative to project root */
     CONTENT_DIR: 'content/blog',
 
+    /** Additional notes directories relative to project root */
+    FALLBACK_CONTENT_DIRS: ['../notes'] as const,
+
     /** Supported file extensions */
     FILE_EXTENSIONS: ['.md', '.mdx'] as const,
 
@@ -149,3 +152,4 @@ export const ERROR_MESSAGES = {
     GEOLOCATION_DENIED: 'Location access was denied.',
     GEOLOCATION_UNAVAILABLE: 'Location information is unavailable.',
 } as const;
+

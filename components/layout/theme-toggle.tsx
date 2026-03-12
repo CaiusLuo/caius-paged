@@ -1,32 +1,22 @@
-/**
+﻿/**
  * Theme Toggle Component
  * Dark/light mode switcher
  */
 
 'use client';
 
-import { useEffect, useCallback, useSyncExternalStore } from 'react';
-import { Moon, Sun, Monitor } from 'lucide-react';
+import { useCallback, useEffect, useSyncExternalStore } from 'react';
+import { Moon, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-type Theme = 'light' | 'dark' | 'system';
+type Theme = 'light' | 'dark';
 
-/**
- * Apply theme to document
- */
 function applyThemeToDocument(theme: Theme) {
     const root = document.documentElement;
-
-    if (theme === 'system') {
-        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        root.classList.toggle('dark', systemDark);
-    } else {
-        root.classList.toggle('dark', theme === 'dark');
-    }
+    root.classList.toggle('dark', theme === 'dark');
 }
 
-// Theme store using external store pattern
-let currentTheme: Theme = 'system';
+let currentTheme: Theme = 'dark';
 const listeners = new Set<() => void>();
 
 function getTheme(): Theme {
@@ -35,7 +25,7 @@ function getTheme(): Theme {
 
 function setThemeValue(theme: Theme) {
     currentTheme = theme;
-    listeners.forEach(listener => listener());
+    listeners.forEach((listener) => listener());
 }
 
 function subscribeToTheme(listener: () => void) {
@@ -43,7 +33,6 @@ function subscribeToTheme(listener: () => void) {
     return () => listeners.delete(listener);
 }
 
-// Hydration helpers
 function getClientSnapshot() {
     return true;
 }
@@ -54,7 +43,7 @@ function getServerSnapshot() {
 
 export function ThemeToggle() {
     const isClient = useSyncExternalStore(
-        () => () => { },
+        () => () => {},
         getClientSnapshot,
         getServerSnapshot
     );
@@ -62,12 +51,11 @@ export function ThemeToggle() {
     const theme = useSyncExternalStore(
         subscribeToTheme,
         getTheme,
-        () => 'system' as Theme
+        () => 'dark' as Theme
     );
 
-    // Initialize theme on mount
     useEffect(() => {
-        const savedTheme = (localStorage.getItem('theme') as Theme | null) || 'system';
+        const savedTheme = (localStorage.getItem('theme') as Theme | null) || 'dark';
         setThemeValue(savedTheme);
         applyThemeToDocument(savedTheme);
     }, []);
@@ -78,11 +66,9 @@ export function ThemeToggle() {
         applyThemeToDocument(newTheme);
     }, []);
 
-    // Prevent hydration mismatch
     if (!isClient) {
         return (
             <div className="flex items-center gap-1 rounded-md bg-zinc-100 p-1 dark:bg-zinc-800">
-                <div className="h-7 w-7" />
                 <div className="h-7 w-7" />
                 <div className="h-7 w-7" />
             </div>
@@ -114,18 +100,6 @@ export function ThemeToggle() {
                 aria-label="Dark theme"
             >
                 <Moon className="h-4 w-4" />
-            </button>
-            <button
-                onClick={() => handleThemeChange('system')}
-                className={cn(
-                    'rounded-md p-1.5 transition-colors',
-                    theme === 'system'
-                        ? 'bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-zinc-50'
-                        : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
-                )}
-                aria-label="System theme"
-            >
-                <Monitor className="h-4 w-4" />
             </button>
         </div>
     );

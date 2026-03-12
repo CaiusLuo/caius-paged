@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Input Component
  * Reusable input field with variants
  */
@@ -45,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                 <input
                     ref={ref}
                     className={cn(
-                        'w-full rounded-lg border transition-colors',
+                        'w-full rounded-lg border text-[color:var(--foreground)] transition-colors',
                         'focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-0',
                         'placeholder:text-zinc-400 dark:placeholder:text-zinc-500',
                         'disabled:cursor-not-allowed disabled:opacity-50',

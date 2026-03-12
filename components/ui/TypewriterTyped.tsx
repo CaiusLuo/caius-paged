@@ -1,18 +1,9 @@
-"use client"
+﻿'use client';
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from 'react';
 
-const colors = [
-    '#007AFF', // System Blue
-    '#34C759', // System Green
-    '#FF9500', // System Orange
-    '#FF2D55', // System Pink
-    '#5856D6', // System Indigo
-    '#FF3B30', // System Red
-    '#AF52DE'  // System Purple
-];
-
-const strings = ['Caius Paged', 'Backend Intern', 'Agent Enthusiast', 'Travel Enthusiast'];
+const colors = ['#0f766e', '#f97316', '#0284c7', '#dc2626'];
+const strings = ['Caius Paged', 'Personal Portfolio', 'Technical Notes', 'Explore Lab'];
 
 interface CharItem {
     char: string;
@@ -29,55 +20,55 @@ export default function TypewriterTyped() {
     const currentString = strings[currentStringIndex];
     const nextCharColor = !isDeleting && currentCharIndex < currentString.length
         ? colors[currentCharIndex % colors.length]
-        : colors[(currentString.length - 1) % colors.length];
+        : colors[(Math.max(currentCharIndex - 1, 0)) % colors.length];
 
-    const type = useCallback(() => {
-        if (isDeleting) {
-            if (currentCharIndex > 0) {
-                setDisplayText(prev => prev.slice(0, -1));
-                setCurrentCharIndex(prev => prev - 1);
-            } else {
-                setIsDeleting(false);
-                setCurrentStringIndex(prev => (prev + 1) % strings.length);
+    useEffect(() => {
+        const timeout = window.setTimeout(() => {
+            if (isDeleting) {
+                if (currentCharIndex > 0) {
+                    setDisplayText((previous) => previous.slice(0, -1));
+                    setCurrentCharIndex((previous) => previous - 1);
+                } else {
+                    setIsDeleting(false);
+                    setCurrentStringIndex((previous) => (previous + 1) % strings.length);
+                }
+                return;
             }
-        } else {
+
             if (currentCharIndex < currentString.length) {
                 const char = currentString[currentCharIndex];
                 const color = colors[currentCharIndex % colors.length];
-                setDisplayText(prev => [...prev, { char, color }]);
-                setCurrentCharIndex(prev => prev + 1);
-            } else {
-                // Finished typing, wait then start deleting
-                setTimeout(() => setIsDeleting(true), 1500);
+                setDisplayText((previous) => [...previous, { char, color }]);
+                setCurrentCharIndex((previous) => previous + 1);
+                return;
             }
-        }
+
+            setIsDeleting(true);
+        }, isDeleting ? 55 : currentCharIndex === currentString.length ? 1400 : 95);
+
+        return () => window.clearTimeout(timeout);
     }, [currentCharIndex, currentString, isDeleting]);
 
     useEffect(() => {
-        const timeout = setTimeout(type, isDeleting ? 50 : 100);
-        return () => clearTimeout(timeout);
-    }, [type, isDeleting]);
-
-    // Cursor blink effect
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCursorVisible(prev => !prev);
+        const interval = window.setInterval(() => {
+            setCursorVisible((previous) => !previous);
         }, 530);
-        return () => clearInterval(interval);
+
+        return () => window.clearInterval(interval);
     }, []);
 
     return (
-        <div className="w-[200px] font-bold">
+        <div className="w-[18ch] overflow-hidden whitespace-nowrap text-sm font-semibold tracking-[0.12em] text-zinc-900 dark:text-white sm:text-base">
             {displayText.map((item, index) => (
-                <span key={index} style={{ color: item.color }}>
+                <span key={`${item.char}-${index}`} style={{ color: item.color }}>
                     {item.char}
                 </span>
             ))}
             <span
                 style={{
-                    color: isDeleting ? colors[(currentCharIndex - 1 + currentString.length) % colors.length] : nextCharColor,
+                    color: nextCharColor,
                     opacity: cursorVisible ? 1 : 0,
-                    transition: 'opacity 0.1s'
+                    transition: 'opacity 0.1s',
                 }}
             >
                 _
@@ -85,3 +76,4 @@ export default function TypewriterTyped() {
         </div>
     );
 }
+

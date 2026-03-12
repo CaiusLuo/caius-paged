@@ -1,36 +1,37 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+﻿import type { Metadata } from 'next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { siteMetadata } from '@/app/config';
+import './globals.css';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const themeInitScript = `(() => {
+    try {
+        const storedTheme = localStorage.getItem('theme');
+        const resolvedTheme = storedTheme === 'light' ? 'light' : 'dark';
+        document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
+    } catch {
+        document.documentElement.classList.add('dark');
+    }
+})();`;
 
 export const metadata: Metadata = {
-  title: "Caius | Personal Portfolio & Developer Profile",
-  description: "Caius 的个人技术主页，分享软件开发项目、技术思考与职业成长历程，聚焦全栈开发领域的实践与探索。",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-        <SpeedInsights />
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en" className="dark" suppressHydrationWarning>
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+            </head>
+            <body>
+                {children}
+                <SpeedInsights />
+            </body>
+        </html>
+    );
 }

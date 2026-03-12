@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Blog Type Definitions
  * Types for blog posts and content management
  */
@@ -8,17 +8,17 @@
  */
 export interface BlogFrontmatter {
     /** Post title */
-    title: string;
+    title?: string;
     /** Publication date (ISO string) */
-    date: string;
+    date?: string;
     /** Brief description for SEO and previews */
-    description: string;
+    description?: string;
     /** Content tags */
-    tags: string[];
+    tags?: string[];
     /** Content category */
-    category: string;
+    category?: string;
     /** Publication status */
-    published: boolean;
+    published?: boolean;
     /** Cover image path (optional) */
     cover?: string;
 }
@@ -26,9 +26,21 @@ export interface BlogFrontmatter {
 /**
  * Full blog post with content
  */
-export interface BlogPost extends BlogFrontmatter {
+export interface BlogPost {
     /** URL-safe identifier */
     slug: string;
+    /** Post title */
+    title: string;
+    /** Publication date (ISO string) */
+    date: string;
+    /** Brief description */
+    description: string;
+    /** Content tags */
+    tags: string[];
+    /** Content category */
+    category: string;
+    /** Cover image path (optional) */
+    cover?: string;
     /** Rendered HTML content */
     content: string;
     /** Estimated reading time (minutes) */

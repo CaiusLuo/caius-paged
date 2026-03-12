@@ -1,12 +1,12 @@
-/**
+﻿/**
  * Blog Card Component
  * Display a blog post summary in a card
  */
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Calendar, Clock } from 'lucide-react';
-import { Card, Badge, BadgeGroup } from '@/components/ui';
+import { ArrowUpRight, Calendar, Clock } from 'lucide-react';
+import { Badge, BadgeGroup, Card } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { formatDate, formatReadingTime } from '@/lib/utils/format';
 import type { BlogPostSummary } from '@/types';
@@ -18,55 +18,61 @@ export interface BlogCardProps {
 
 export function BlogCard({ post, className }: BlogCardProps) {
     return (
-        <Link href={`/blog/${post.slug}`}>
-            <Card hoverable className={cn('group cursor-pointer', className)}>
-                {/* Cover Image */}
+        <Link href={`/blog/${encodeURIComponent(post.slug)}`} className="block h-full">
+            <Card
+                hoverable
+                className={cn(
+                    'group flex h-full flex-col border border-zinc-200/70 bg-white/75 backdrop-blur-xl dark:border-white/10 dark:bg-white/5',
+                    className
+                )}
+            >
                 {post.cover && (
-                    <div className="relative aspect-video overflow-hidden">
+                    <div className="relative aspect-[16/10] overflow-hidden">
                         <Image
                             src={post.cover}
                             alt={post.title}
                             fill
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     </div>
                 )}
 
-                {/* Content */}
-                <div className="p-4">
-                    {/* Category & Tags */}
-                    <div className="mb-2">
-                        <BadgeGroup>
-                            <Badge variant="primary" size="sm">
-                                {post.category}
-                            </Badge>
-                            {post.tags.slice(0, 2).map((tag) => (
-                                <Badge key={tag} size="sm">
-                                    {tag}
-                                </Badge>
-                            ))}
-                        </BadgeGroup>
+                <div className="flex h-full flex-col p-5">
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                        <Badge variant="primary" size="sm">
+                            {post.category}
+                        </Badge>
+                        <ArrowUpRight className="h-4 w-4 text-zinc-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[color:var(--foreground)]" />
                     </div>
 
-                    {/* Title */}
-                    <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-zinc-900 dark:text-zinc-50">
+                    <h3 className="line-clamp-2 text-xl font-semibold tracking-tight text-[color:var(--foreground)]">
                         {post.title}
                     </h3>
-
-                    {/* Description */}
-                    <p className="mb-3 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+                    <p className="mt-3 line-clamp-3 text-sm leading-7 text-[color:var(--muted)]">
                         {post.description}
                     </p>
 
-                    {/* Meta */}
-                    <div className="flex items-center gap-4 text-xs text-zinc-500 dark:text-zinc-400">
-                        <span className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
+                    <BadgeGroup className="mt-5 gap-2">
+                        {post.tags.slice(0, 3).map((tag) => (
+                            <Badge key={tag} variant="outline" size="sm">
+                                {tag}
+                            </Badge>
+                        ))}
+                        {post.tags.length === 0 && (
+                            <Badge variant="outline" size="sm">
+                                Markdown
+                            </Badge>
+                        )}
+                    </BadgeGroup>
+
+                    <div className="mt-auto flex flex-wrap items-center gap-4 pt-6 text-xs font-medium uppercase tracking-[0.16em] text-[color:var(--muted)]">
+                        <span className="inline-flex items-center gap-1.5">
+                            <Calendar className="h-3.5 w-3.5" />
                             {formatDate(post.date)}
                         </span>
-                        <span className="flex items-center gap-1">
-                            <Clock className="h-3 w-3" />
+                        <span className="inline-flex items-center gap-1.5">
+                            <Clock className="h-3.5 w-3.5" />
                             {formatReadingTime(post.readingTime)}
                         </span>
                     </div>

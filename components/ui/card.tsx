@@ -1,3 +1,4 @@
+﻿/* eslint-disable @next/next/no-img-element */
 /**
  * Card Component
  * Reusable card container with variants

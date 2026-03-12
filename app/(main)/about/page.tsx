@@ -1,88 +1,85 @@
-/**
+﻿/**
  * About Page
  * Personal profile and contact information
  */
 
+import Link from 'next/link';
 import { Badge } from '@/components/ui';
-import { Github, Mail, MapPin } from 'lucide-react';
+import { Github, Mail, MapPin, NotebookTabs, Radar } from 'lucide-react';
 import { authorInfo } from '@/app/config';
+
+const stack = ['Next.js', 'React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'Geo APIs'];
 
 export default function AboutPage() {
     return (
-        <div className="container mx-auto px-4 py-8">
-            <div className="mx-auto max-w-3xl">
-                {/* Hero */}
-                <section className="mb-12 text-center">
-                    <div className="mb-6 inline-flex h-32 w-32 items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800">
-                        <span className="text-4xl font-bold text-zinc-600 dark:text-zinc-400">
-                            {authorInfo.name.charAt(0)}
-                        </span>
-                    </div>
-                    <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50">
-                        {authorInfo.name}
-                    </h1>
-                    <p className="mt-2 text-lg text-zinc-600 dark:text-zinc-400">
-                        Full Stack Developer
-                    </p>
-                    <p className="mt-1 flex items-center justify-center gap-1 text-sm text-zinc-500">
-                        <MapPin className="h-4 w-4" />
-                        China
-                    </p>
-                </section>
+        <div className="page-shell">
+            <section className="hero-panel hero-panel-compact">
+                <div className="hero-orb hero-orb-primary" />
+                <div className="hero-grid" />
 
-                {/* Introduction */}
-                <section className="mb-12">
-                    <h2 className="mb-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
-                        About Me
-                    </h2>
-                    <p className="text-zinc-600 dark:text-zinc-400">
-                        Welcome to my personal website! I am a passionate developer interested in
-                        building modern web applications. This site showcases nearby attractions
-                        based on your location and shares my technical insights through blog posts.
+                <div className="relative grid gap-8 lg:grid-cols-[1fr_320px] lg:items-center">
+                    <div>
+                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-[color:var(--muted)]">About</p>
+                        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[color:var(--foreground)] sm:text-5xl">
+                            Caius builds product-facing interfaces, documents engineering work, and experiments with location-aware tools.
+                        </h1>
+                        <p className="mt-4 max-w-3xl text-base leading-8 text-[color:var(--muted)]">
+                            This site is designed as a living personal homepage: portfolio first, notes second, and interactive utilities close behind.
+                        </p>
+                        <div className="mt-6 flex flex-wrap gap-3">
+                            <Link href={authorInfo.github} target="_blank" rel="noreferrer noopener" className="action-link action-link-primary">
+                                GitHub
+                                <Github className="h-4 w-4" />
+                            </Link>
+                            <Link href={`mailto:${authorInfo.email}`} className="action-link action-link-secondary">
+                                Email
+                                <Mail className="h-4 w-4" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="highlight-card animate-float-delayed text-[color:var(--muted)]">
+                        <div className="space-y-4 text-sm">
+                            <div className="inline-flex items-center gap-2 font-medium text-[color:var(--muted)]">
+                                <MapPin className="h-4 w-4" />
+                                Based in China
+                            </div>
+                            <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-[color:var(--foreground)] shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
+                                Writing technical notes as reusable project memory.
+                            </div>
+                            <div className="rounded-2xl border border-white/60 bg-white/70 px-4 py-3 text-[color:var(--foreground)] shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
+                                Using portfolio pages to showcase real product capabilities.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="section-panel">
+                    <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
+                        <NotebookTabs className="h-4 w-4" />
+                        Working style
+                    </div>
+                    <p className="mt-4 text-sm leading-8 text-[color:var(--muted)]">
+                        I like interfaces that feel intentional, readable, and useful on day one. That means building with a product mindset, keeping the technical details close, and capturing the lessons while the work is still fresh.
                     </p>
-                </section>
+                </div>
 
-                {/* Skills */}
-                <section className="mb-12">
-                    <h2 className="mb-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
-                        Tech Stack
-                    </h2>
-                    <div className="flex flex-wrap gap-2">
-                        {['Next.js', 'React', 'TypeScript', 'Node.js', 'Tailwind CSS', 'PostgreSQL'].map(
-                            (skill) => (
-                                <Badge key={skill} variant="outline" size="md">
-                                    {skill}
-                                </Badge>
-                            )
-                        )}
+                <div className="section-panel">
+                    <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
+                        <Radar className="h-4 w-4" />
+                        Stack
                     </div>
-                </section>
-
-                {/* Contact */}
-                <section className="mb-12">
-                    <h2 className="mb-4 text-2xl font-semibold text-zinc-900 dark:text-zinc-50">
-                        Contact
-                    </h2>
-                    <div className="flex flex-col gap-3">
-                        <a
-                            href={`mailto:${authorInfo.email}`}
-                            className="flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                        >
-                            <Mail className="h-5 w-5" />
-                            {authorInfo.email}
-                        </a>
-                        <a
-                            href={authorInfo.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                        >
-                            <Github className="h-5 w-5" />
-                            GitHub
-                        </a>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {stack.map((item) => (
+                            <Badge key={item} variant="outline" size="md">
+                                {item}
+                            </Badge>
+                        ))}
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
         </div>
     );
 }

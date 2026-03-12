@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Attraction Grid Component
  * Display a grid of attraction cards
  */
@@ -20,9 +20,9 @@ export function AttractionGrid({
 }: AttractionGridProps) {
     if (loading) {
         return (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {Array.from({ length: loadingCount }).map((_, i) => (
-                    <SkeletonCard key={i} />
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {Array.from({ length: loadingCount }).map((_, index) => (
+                    <SkeletonCard key={index} />
                 ))}
             </div>
         );
@@ -30,19 +30,17 @@ export function AttractionGrid({
 
     if (attractions.length === 0) {
         return (
-            <div className="py-12 text-center">
-                <p className="text-lg text-zinc-600 dark:text-zinc-400">
-                    No attractions found nearby.
-                </p>
-                <p className="mt-2 text-sm text-zinc-500">
-                    Try adjusting your location or search criteria.
+            <div className="rounded-[1.75rem] border border-dashed border-zinc-300/80 bg-white/60 px-6 py-12 text-center dark:border-white/10 dark:bg-white/5">
+                <p className="text-lg font-medium text-[color:var(--foreground)]">No attractions found.</p>
+                <p className="mt-2 text-sm text-[color:var(--muted)]">
+                    Try switching between nearby mode and keyword mode, or adjust the current filters.
                 </p>
             </div>
         );
     }
 
     return (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {attractions.map((attraction) => (
                 <AttractionCard key={attraction.id} attraction={attraction} />
             ))}
