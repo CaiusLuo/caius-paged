@@ -60,7 +60,7 @@ export const socialLinks = [
 ] as const;
 
 export const themeConfig = {
-    defaultTheme: 'dark' as const,
+    defaultTheme: 'light' as const,
     themes: ['light', 'dark'] as const,
     colorScheme: 'zinc',
 } as const;
@@ -78,6 +78,7 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
 
 
 
