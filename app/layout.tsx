@@ -6,10 +6,10 @@ import './globals.css';
 const themeInitScript = `(() => {
     try {
         const storedTheme = localStorage.getItem('theme');
-        const resolvedTheme = storedTheme === 'light' ? 'light' : 'dark';
+        const resolvedTheme = storedTheme === 'dark' ? 'dark' : 'light';
         document.documentElement.classList.toggle('dark', resolvedTheme === 'dark');
     } catch {
-        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('dark');
     }
 })();`;
 
@@ -24,7 +24,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="dark" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning>
             <head>
                 <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
             </head>
@@ -35,3 +35,4 @@ export default function RootLayout({
         </html>
     );
 }
+

@@ -16,7 +16,7 @@ function applyThemeToDocument(theme: Theme) {
     root.classList.toggle('dark', theme === 'dark');
 }
 
-let currentTheme: Theme = 'dark';
+let currentTheme: Theme = 'light';
 const listeners = new Set<() => void>();
 
 function getTheme(): Theme {
@@ -51,11 +51,11 @@ export function ThemeToggle() {
     const theme = useSyncExternalStore(
         subscribeToTheme,
         getTheme,
-        () => 'dark' as Theme
+        () => 'light' as Theme
     );
 
     useEffect(() => {
-        const savedTheme = (localStorage.getItem('theme') as Theme | null) || 'dark';
+        const savedTheme = (localStorage.getItem('theme') as Theme | null) || 'light';
         setThemeValue(savedTheme);
         applyThemeToDocument(savedTheme);
     }, []);
@@ -104,3 +104,4 @@ export function ThemeToggle() {
         </div>
     );
 }
+
