@@ -1,9 +1,17 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       // Amap images (POI photos)
+      {
+        protocol: "http",
+        hostname: "aos-cdn-image.amap.com",
+      },
+      {
+        protocol: "https",
+        hostname: "aos-cdn-image.amap.com",
+      },
       {
         protocol: "https",
         hostname: "*.amap.com",

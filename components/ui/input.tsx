@@ -52,9 +52,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                         variants[variant],
                         sizes[size],
                         error && 'border-red-500 focus:ring-red-500',
+                        className,
                         leftIcon && 'pl-10',
-                        rightIcon && 'pr-10',
-                        className
+                        rightIcon && 'pr-10'
                     )}
                     {...props}
                 />
@@ -69,3 +69,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 );
 
 Input.displayName = 'Input';
+

@@ -1,11 +1,25 @@
-/**
+﻿/**
  * Attractions Search API
  * GET /api/attractions - Search attractions by query
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { searchAttractionsByText, searchPhotos } from '@/lib/api';
-import type { AttractionApiResponse } from '@/types';
+import type { Attraction, AttractionApiResponse, AttractionSearchParams } from '@/types';
+
+function sortAttractions(attractions: Attraction[], sort: AttractionSearchParams['sort']) {
+    const items = [...attractions];
+
+    switch (sort) {
+        case 'name':
+            return items.sort((a, b) => a.name.localeCompare(b.name));
+        case 'distance':
+            return items.sort((a, b) => (a.distance ?? Number.POSITIVE_INFINITY) - (b.distance ?? Number.POSITIVE_INFINITY));
+        case 'rating':
+        default:
+            return items.sort((a, b) => (b.rating ?? Number.NEGATIVE_INFINITY) - (a.rating ?? Number.NEGATIVE_INFINITY));
+    }
+}
 
 export async function GET(request: NextRequest) {
     try {
@@ -13,14 +27,13 @@ export async function GET(request: NextRequest) {
         const query = searchParams.get('q') || '';
         const category = searchParams.get('category') || undefined;
         const page = parseInt(searchParams.get('page') || '1', 10);
+        const sort = (searchParams.get('sort') as AttractionSearchParams['sort'] | null) || 'rating';
 
-        // Search attractions using Amap
         const attractions = await searchAttractionsByText(query, {
             types: category,
             page,
         });
 
-        // Enrich with photos from Unsplash
         const enrichedAttractions = await Promise.all(
             attractions.map(async (attraction) => {
                 if (attraction.photos.length === 0) {
@@ -31,9 +44,11 @@ export async function GET(request: NextRequest) {
             })
         );
 
+        const sortedAttractions = sortAttractions(enrichedAttractions, sort);
+
         const response: AttractionApiResponse = {
-            attractions: enrichedAttractions,
-            total: attractions.length,
+            attractions: sortedAttractions,
+            total: sortedAttractions.length,
             page,
             hasMore: attractions.length === 20,
         };
