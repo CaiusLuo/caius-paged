@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
             attractions: sortedAttractions,
             total: sortedAttractions.length,
             page,
-            hasMore: attractions.length === 20,
+            hasMore: attractions.length === 21,
         };
 
         return NextResponse.json(response);

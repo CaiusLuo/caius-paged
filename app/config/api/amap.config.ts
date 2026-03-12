@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Amap (Gaode Maps) API Configuration
  * POI search and geocoding service for China
  * 
@@ -87,7 +87,7 @@ export const amapConfig = {
         radius: 5000,
 
         /** Results per page */
-        offset: 20,
+        offset: 21,
 
         /** Response format */
         output: 'json' as const,

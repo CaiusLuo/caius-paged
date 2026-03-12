@@ -11,7 +11,7 @@ export const PAGINATION = {
     DEFAULT_PAGE_SIZE: 10,
 
     /** Attractions per page */
-    ATTRACTIONS_PER_PAGE: 20,
+    ATTRACTIONS_PER_PAGE: 21,
 
     /** Blog posts per page */
     BLOG_POSTS_PER_PAGE: 10,
@@ -152,4 +152,5 @@ export const ERROR_MESSAGES = {
     GEOLOCATION_DENIED: 'Location access was denied.',
     GEOLOCATION_UNAVAILABLE: 'Location information is unavailable.',
 } as const;
+
 
