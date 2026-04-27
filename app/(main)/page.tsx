@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Github, Mail, NotebookPen } from 'lucide-react';
 import { ResumeSwitcher } from '@/components/features/resume/resume-switcher';
 import { authorInfo } from '@/app/config';
@@ -48,48 +49,39 @@ export default function HomePage() {
             <section className="notion-hero">
                 <div className="hero-copy">
                     <p className="eyebrow">罗雄才 / Caius</p>
-                    <h1>
-                        Backend Developer
-                        <span>Agent Engineering</span>
-                    </h1>
-                    <p className="hero-lead">
-                        Java 后端开发，关注 Agent 基础设施、微服务架构、消息队列、缓存体系与高并发写链路。
-                    </p>
-
-                    <div className="hero-inline-meta" aria-label="Profile highlights">
-                        <span>Agent Backend</span>
-                        <span>Spring Cloud</span>
-                        <span>Redis / MQ</span>
-                        <span>GraphQL</span>
+                    <div className="hero-self-image">
+                        <Image
+                            src="/caius-self-png.png"
+                            alt="Caius profile introduction"
+                            width={1055}
+                            height={1491}
+                            priority
+                        />
                     </div>
 
-                    <div className="hero-actions">
-                        <Link href="#experience" className="notion-button notion-button-primary">
-                            查看经历
-                            <ArrowRight className="h-4 w-4" />
-                        </Link>
-                        <Link href="/blog" className="notion-button notion-button-secondary">
-                            技术笔记
-                            <NotebookPen className="h-4 w-4" />
-                        </Link>
-                        <Link href={authorInfo.github} className="notion-button notion-button-secondary" target="_blank" rel="noreferrer noopener">
-                            GitHub
-                            <Github className="h-4 w-4" />
-                        </Link>
-                        <Link href={`mailto:${authorInfo.email}`} className="notion-button notion-button-secondary">
-                            联系我
-                            <Mail className="h-4 w-4" />
-                        </Link>
-                    </div>
                 </div>
 
                 <aside className="hero-resume-card" aria-label="Resume summary">
                     <div className="resume-paper-header">
-                        <span />
-                        <span />
-                        <span />
+                        <div className="resume-window-controls" aria-hidden="true">
+                            <span />
+                            <span />
+                            <span />
+                        </div>
+                        <div className="resume-paper-tabs" aria-label="Profile tabs">
+                            <span className="is-active">Profile</span>
+                            <span>Stack</span>
+                            <span>Systems</span>
+                        </div>
                     </div>
                     <div className="resume-paper-body">
+                        <div className="hero-card-tags" aria-label="Profile highlights">
+                            <span>Agent Backend</span>
+                            <span>Spring Cloud</span>
+                            <span>Redis / MQ</span>
+                            <span>GraphQL</span>
+                        </div>
+
                         <p className="resume-paper-label">Resume Snapshot</p>
                         <h2>Backend / Agent</h2>
                         <p>
@@ -102,6 +94,24 @@ export default function HomePage() {
                                     <span>{item.label}</span>
                                 </div>
                             ))}
+                        </div>
+                        <div className="resume-card-actions">
+                            <Link href="#experience" className="notion-button notion-button-primary">
+                                查看经历
+                                <ArrowRight className="h-4 w-4" />
+                            </Link>
+                            <Link href="/blog" className="notion-button notion-button-secondary">
+                                技术笔记
+                                <NotebookPen className="h-4 w-4" />
+                            </Link>
+                            <Link href={authorInfo.github} className="notion-button notion-button-secondary" target="_blank" rel="noreferrer noopener">
+                                GitHub
+                                <Github className="h-4 w-4" />
+                            </Link>
+                            <Link href={`mailto:${authorInfo.email}`} className="notion-button notion-button-secondary">
+                                联系我
+                                <Mail className="h-4 w-4" />
+                            </Link>
                         </div>
                     </div>
                 </aside>
