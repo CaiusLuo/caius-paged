@@ -13,15 +13,18 @@ const revealSelector = [
 
 export function ScrollReveal() {
     useEffect(() => {
-        const elements = Array.from(document.querySelectorAll<HTMLElement>(revealSelector));
-
         document.documentElement.classList.add('reveal-ready');
 
+        const markVisible = (element: Element) => {
+            element.classList.add('reveal-visible');
+        };
+
         if (!('IntersectionObserver' in window)) {
-            elements.forEach((element) => element.classList.add('reveal-visible'));
+            document.querySelectorAll<HTMLElement>(revealSelector).forEach(markVisible);
             return;
         }
 
+        const observed = new WeakSet<Element>();
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -39,9 +42,42 @@ export function ScrollReveal() {
             }
         );
 
-        elements.forEach((element) => observer.observe(element));
+        const observeElement = (element: Element) => {
+            if (observed.has(element) || element.classList.contains('reveal-visible')) {
+                return;
+            }
+
+            observed.add(element);
+            observer.observe(element);
+        };
+
+        const observeTree = (root: ParentNode) => {
+            if (root instanceof Element && root.matches(revealSelector)) {
+                observeElement(root);
+            }
+
+            root.querySelectorAll?.(revealSelector).forEach(observeElement);
+        };
+
+        observeTree(document);
+
+        const mutationObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node instanceof Element) {
+                        observeTree(node);
+                    }
+                });
+            });
+        });
+
+        mutationObserver.observe(document.body, {
+            childList: true,
+            subtree: true,
+        });
 
         return () => {
+            mutationObserver.disconnect();
             observer.disconnect();
             document.documentElement.classList.remove('reveal-ready');
         };
