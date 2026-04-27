@@ -1,7 +1,22 @@
-﻿import Link from 'next/link';
+﻿import type { Metadata } from 'next';
+import Link from 'next/link';
 import { ArrowRight, BookOpenText, Notebook, Radar } from 'lucide-react';
 import { BlogList } from '@/components/features/blog';
 import { getAllBlogPosts } from '@/lib/content/blog';
+import { siteMetadata } from '@/app/config';
+
+export const metadata: Metadata = {
+    title: '技术笔记 | Caius',
+    description: '技术笔记、项目复盘与工程记录，分享后端开发、Agent 工程化与架构设计的实践经验。',
+    keywords: ['技术笔记', '后端开发', 'Agent 工程化', '微服务', '架构设计', '工程实践'],
+    openGraph: {
+        title: '技术笔记 | Caius',
+        description: '技术笔记、项目复盘与工程记录，分享后端开发、Agent 工程化与架构设计的实践经验。',
+        type: 'website',
+        siteName: siteMetadata.name,
+        locale: 'zh-CN',
+    },
+};
 
 export default function BlogPage() {
     const posts = getAllBlogPosts();
@@ -16,12 +31,12 @@ export default function BlogPage() {
 
                 <div className="relative grid gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
                     <div>
-                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-[color:var(--muted)]">Notes & reflections</p>
+                        <p className="text-sm font-medium uppercase tracking-[0.24em] text-[color:var(--muted)]">笔记</p>
                         <h1 className="mt-4 text-4xl font-semibold tracking-tight text-[color:var(--foreground)] sm:text-5xl">
-                            Technical notes, project write-ups, and reflections rendered directly from Markdown.
+                            工程实践与思考，用 Markdown 记录
                         </h1>
                         <p className="mt-4 max-w-3xl text-base leading-8 text-[color:var(--muted)]">
-                            A place to share engineering lessons, working notes, and thoughts worth keeping close.
+                            技术笔记、项目复盘、值得保留的经验
                         </p>
                         <div className="mt-6 flex flex-wrap gap-2">
                             {tags.length > 0 ? (
@@ -37,27 +52,27 @@ export default function BlogPage() {
                     </div>
 
                     <div className="highlight-card animate-float-delayed">
-                        <div className="space-y-4">
+                        <div className="space-y-3">
                             <div className="flex items-center gap-3 text-sm font-medium text-[color:var(--muted)]">
                                 <Notebook className="h-4 w-4" />
-                                Reading snapshot
+                                阅读速览
                             </div>
-                            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                            <div className="grid gap-2 sm:grid-cols-3 lg:grid-cols-1">
                                 <div className="stat-card">
                                     <span className="stat-value">{posts.length}</span>
-                                    <span className="stat-label">Entries</span>
+                                    <span className="stat-label">篇</span>
                                 </div>
                                 <div className="stat-card">
                                     <span className="stat-value">{categories.length}</span>
-                                    <span className="stat-label">Categories</span>
+                                    <span className="stat-label">分类</span>
                                 </div>
                                 <div className="stat-card">
                                     <span className="stat-value">MD</span>
-                                    <span className="stat-label">Native format</span>
+                                    <span className="stat-label">格式</span>
                                 </div>
                             </div>
                             <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-[color:var(--foreground)] transition hover:gap-3">
-                                Back to home
+                                返回首页
                                 <ArrowRight className="h-4 w-4" />
                             </Link>
                         </div>
@@ -68,14 +83,14 @@ export default function BlogPage() {
             <section className="section-panel space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <div>
-                        <h2 className="text-2xl font-semibold text-[color:var(--foreground)]">All writing</h2>
+                        <h2 className="text-2xl font-semibold text-[color:var(--foreground)]">全部笔记</h2>
                         <p className="mt-2 text-sm text-[color:var(--muted)]">
-                            Browse troubleshooting records, architecture thinking, and reflections from building and everyday life.
+                            排查记录、架构思考、项目复盘
                         </p>
                     </div>
                     <div className="flex items-center gap-2 text-sm text-[color:var(--muted)]">
                         <BookOpenText className="h-4 w-4" />
-                        Readable Markdown archive
+                        可读的 Markdown 归档
                     </div>
                 </div>
 
@@ -86,19 +101,19 @@ export default function BlogPage() {
                 <div className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-6 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
                     <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
                         <Radar className="h-4 w-4" />
-                        Why this page matters
+                        为什么写笔记
                     </div>
                     <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">
-                        These notes are meant to feel like living memory instead of placeholder posts, so the writing can carry both technical detail and personal thought.
+                        鲜活的实践记忆而非模板化文章，技术细节与个人思考并存
                     </p>
                 </div>
                 <div className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-6 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
                     <div className="flex items-center gap-2 text-sm font-medium text-[color:var(--muted)]">
                         <Notebook className="h-4 w-4" />
-                        How the writing stays close
+                        内容如何保持更新
                     </div>
                     <p className="mt-4 text-sm leading-7 text-[color:var(--muted)]">
-                        The site reads local content directly, making it easy to keep sharing ideas, project notes, and reflections without extra publishing overhead.
+                        直接读取本地 Markdown，无额外发布流程，随时记录
                     </p>
                 </div>
             </section>

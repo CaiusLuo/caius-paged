@@ -23,7 +23,7 @@ export function Footer() {
                         {siteConfig.metadata.name}
                     </Link>
                     <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
-                        Personal homepage, technical notes, and location-aware exploration.
+                        个人主页、技术笔记与基于位置的空间探索。
                     </p>
                     <p className="mt-1 text-xs uppercase tracking-[0.18em] text-zinc-400">
                         {currentYear} {siteConfig.author.name}

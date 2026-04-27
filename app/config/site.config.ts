@@ -5,10 +5,10 @@
 
 export const siteMetadata = {
     name: 'Caius Paged',
-    title: 'Caius | Backend Developer & Agent Engineering',
-    description: 'A clean personal portfolio for backend development, Agent engineering, internships, projects, and technical notes.',
+    title: 'Caius | 后端开发与 Agent 工程化',
+    description: '罗雄才的个人网站，分享后端开发、Agent 工程化、微服务架构与技术笔记。',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
-    locale: 'en-US',
+    locale: 'zh-CN',
     themeColor: '#0f172a',
 } as const;
 
