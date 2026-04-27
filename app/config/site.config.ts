@@ -6,7 +6,7 @@
 export const siteMetadata = {
     name: 'Caius Paged',
     title: 'Caius | 后端开发与 Agent 工程化',
-    description: '罗雄才的个人网站，分享后端开发、Agent 工程化、微服务架构与技术笔记。',
+    description: 'Caius 的个人网站，分享后端开发、Agent 工程化、微服务架构与技术笔记。',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     locale: 'zh-CN',
     themeColor: '#0f172a',
@@ -78,6 +78,5 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
-
 
 

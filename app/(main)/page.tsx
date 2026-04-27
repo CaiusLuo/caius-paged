@@ -48,7 +48,7 @@ export default function HomePage() {
         <div className="notion-home">
             <section className="notion-hero">
                 <div className="hero-copy">
-                    <p className="eyebrow">罗雄才 / Caius</p>
+                    <p className="eyebrow">Caius</p>
                     <div className="hero-self-image">
                         <Image
                             src="/caius-self-png.png"
