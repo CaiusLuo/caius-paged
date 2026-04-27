@@ -22,7 +22,7 @@ export function AttractionCard({ attraction, className }: AttractionCardProps) {
         <Card
             hoverable
             className={cn(
-                'group cursor-pointer border border-zinc-200/70 bg-white/75 backdrop-blur-xl dark:border-white/10 dark:bg-white/5',
+                'apple-card group cursor-pointer',
                 className
             )}
         >

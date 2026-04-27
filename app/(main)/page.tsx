@@ -124,7 +124,14 @@ export default function HomePage() {
                         <h2>技术关键词</h2>
                     </div>
                 </div>
-                <div className="skill-cloud">
+                <div className="tech-orbit-strip" aria-label="Core stack loop">
+                    <div>
+                        {[...skills, ...skills].map((skill, index) => (
+                            <span key={`${skill}-${index}`}>{skill}</span>
+                        ))}
+                    </div>
+                </div>
+                <div className="sr-only">
                     {skills.map((skill) => (
                         <span key={skill}>{skill}</span>
                     ))}
@@ -133,7 +140,7 @@ export default function HomePage() {
 
             <section className="focus-grid">
                 {focusAreas.map((area, index) => (
-                    <article key={area.title} className="notion-card" style={{ animationDelay: `${index * 90}ms` }}>
+                    <article key={area.title} className="notion-card apple-card" style={{ animationDelay: `${index * 90}ms` }}>
                         <span className="card-number">{String(index + 1).padStart(2, '0')}</span>
                         <h2>{area.title}</h2>
                         <p>{area.description}</p>
@@ -158,7 +165,7 @@ export default function HomePage() {
 
                 <div className="writing-grid">
                     {featuredPosts.map((post) => (
-                        <Link key={post.slug} href={`/blog/${encodeURIComponent(post.slug)}`} className="writing-card">
+                        <Link key={post.slug} href={`/blog/${encodeURIComponent(post.slug)}`} className="writing-card apple-card">
                             <span>{post.category} · {formatDate(post.date)}</span>
                             <h3>{post.title}</h3>
                             <p>{post.description}</p>

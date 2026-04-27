@@ -22,7 +22,7 @@ export function BlogCard({ post, className }: BlogCardProps) {
             <Card
                 hoverable
                 className={cn(
-                    'group flex h-full flex-col border border-zinc-200/70 bg-white/75 backdrop-blur-xl dark:border-white/10 dark:bg-white/5',
+                    'apple-card group flex h-full flex-col',
                     className
                 )}
             >

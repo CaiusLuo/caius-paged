@@ -112,7 +112,7 @@ export function NearbyAttractions() {
 
     return (
         <div className="space-y-6">
-            <section className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-5 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
+            <section className="apple-card p-5">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div className="space-y-2">
                         <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
@@ -120,12 +120,12 @@ export function NearbyAttractions() {
                             Live nearby feed
                         </div>
                         <div className="flex flex-wrap items-center gap-3 text-sm text-[color:var(--muted)]">
-                            <span className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-3 py-1 text-white dark:bg-white dark:text-zinc-950">
+                            <span className="inline-flex items-center gap-2 rounded-lg bg-zinc-950 px-3 py-1 text-white dark:bg-white dark:text-zinc-950">
                                 <MapPin className="h-4 w-4" />
                                 {locationDisplay}
                             </span>
                             {locationSource !== 'browser' && locationSource !== 'loading' && (
-                                <span className="rounded-full border border-zinc-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[color:var(--muted)] dark:border-white/10">
+                                <span className="rounded-lg border border-zinc-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[color:var(--muted)] dark:border-white/10">
                                     {locationSource === 'ip' ? 'IP fallback' : 'Default city'}
                                 </span>
                             )}
@@ -137,7 +137,7 @@ export function NearbyAttractions() {
                         size="md"
                         onClick={fetchLocationAndAttractions}
                         disabled={loading}
-                        className="rounded-full px-5"
+                        className="rounded-xl px-5"
                     >
                         <RefreshCw className={`h-4 w-4 ${loading ? 'animate-spin' : ''}`} />
                         Refresh places
@@ -146,7 +146,7 @@ export function NearbyAttractions() {
             </section>
 
             {error && (
-                <section className="rounded-[1.4rem] border border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/40 dark:bg-red-950/20">
+                <section className="apple-card border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/40 dark:bg-red-950/20">
                     <p className="text-sm text-red-600 dark:text-red-300">{error}</p>
                 </section>
             )}

@@ -30,7 +30,7 @@ export function AttractionGrid({
 
     if (attractions.length === 0) {
         return (
-            <div className="rounded-[1.75rem] border border-dashed border-zinc-300/80 bg-white/60 px-6 py-12 text-center dark:border-white/10 dark:bg-white/5">
+            <div className="apple-card border-dashed px-6 py-12 text-center">
                 <p className="text-lg font-medium text-[color:var(--foreground)]">No attractions found.</p>
                 <p className="mt-2 text-sm text-[color:var(--muted)]">
                     Try switching between nearby mode and keyword mode, or adjust the current filters.

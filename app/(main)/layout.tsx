@@ -4,6 +4,7 @@
  */
 
 import { Header, Footer } from '@/components/layout';
+import { ScrollReveal } from '@/components/layout/scroll-reveal';
 
 export default function MainLayout({
     children,
@@ -17,6 +18,7 @@ export default function MainLayout({
                 {children}
             </main>
             <Footer />
+            <ScrollReveal />
         </div>
     );
 }

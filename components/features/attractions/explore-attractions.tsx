@@ -188,7 +188,7 @@ export function ExploreAttractions() {
 
     return (
         <div className="space-y-6">
-            <section className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-5 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
+            <section className="apple-card p-5">
                 <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
                         <SlidersHorizontal className="h-3.5 w-3.5" />
@@ -207,14 +207,14 @@ export function ExploreAttractions() {
                                     }
                                 }}
                                 leftIcon={<Search className="h-4 w-4" />}
-                                className="h-12 rounded-full border-zinc-200/80 bg-white/80 pr-5 dark:border-white/10 dark:bg-white/5"
+                                className="h-12 rounded-xl border-zinc-200/80 bg-white/80 pr-5 dark:border-white/10 dark:bg-white/5"
                             />
                         </div>
-                        <Button onClick={handleSearch} loading={loading && searchMode === 'keyword'} className="h-12 rounded-full px-6">
+                        <Button onClick={handleSearch} loading={loading && searchMode === 'keyword'} className="h-12 rounded-xl px-6">
                             Search
                         </Button>
                         {searchMode === 'keyword' && (
-                            <Button variant="outline" onClick={clearSearch} className="h-12 rounded-full px-5 dark:border-white/10 dark:bg-white/5">
+                            <Button variant="outline" onClick={clearSearch} className="h-12 rounded-xl px-5 dark:border-white/10 dark:bg-white/5">
                                 <X className="h-4 w-4" />
                                 Reset
                             </Button>
@@ -227,7 +227,7 @@ export function ExploreAttractions() {
                             <select
                                 value={category}
                                 onChange={(event) => setCategory(event.target.value)}
-                                className="h-12 w-full rounded-2xl border border-zinc-200/80 bg-white/80 px-4 text-sm text-[color:var(--foreground)] outline-none transition focus:border-zinc-400 dark:border-white/10 dark:bg-white/5"
+                                className="h-12 w-full rounded-xl border border-zinc-200/80 bg-white/80 px-4 text-sm text-[color:var(--foreground)] outline-none transition focus:border-zinc-400 dark:border-white/10 dark:bg-white/5"
                             >
                                 {ATTRACTION_CATEGORIES.map((cat) => (
                                     <option key={cat.code} value={cat.code}>
@@ -243,7 +243,7 @@ export function ExploreAttractions() {
                                 value={radius}
                                 onChange={(event) => setRadius(Number(event.target.value))}
                                 disabled={searchMode !== 'nearby'}
-                                className="h-12 w-full rounded-2xl border border-zinc-200/80 bg-white/80 px-4 text-sm text-[color:var(--foreground)] outline-none transition focus:border-zinc-400 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5"
+                                className="h-12 w-full rounded-xl border border-zinc-200/80 bg-white/80 px-4 text-sm text-[color:var(--foreground)] outline-none transition focus:border-zinc-400 disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5"
                             >
                                 {RADIUS_OPTIONS.map((option) => (
                                     <option key={option.value} value={option.value}>
@@ -256,15 +256,15 @@ export function ExploreAttractions() {
                 </div>
             </section>
 
-            <section className="rounded-[1.75rem] border border-zinc-200/70 bg-white/70 p-5 shadow-sm shadow-zinc-950/5 dark:border-white/10 dark:bg-white/5">
+            <section className="apple-card p-5">
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex flex-wrap items-center gap-3 text-sm text-[color:var(--muted)]">
-                        <span className="inline-flex items-center gap-2 rounded-full bg-zinc-950 px-3 py-1 text-white dark:bg-white dark:text-zinc-950">
+                        <span className="inline-flex items-center gap-2 rounded-lg bg-zinc-950 px-3 py-1 text-white dark:bg-white dark:text-zinc-950">
                             {searchMode === 'nearby' ? <MapPin className="h-4 w-4" /> : <Search className="h-4 w-4" />}
                             {searchMode === 'nearby' ? `Nearby: ${locationDisplay}` : `Keyword: "${searchQuery}"`}
                         </span>
                         {searchMode === 'nearby' && location?.source === 'default' && (
-                            <span className="rounded-full border border-zinc-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[color:var(--muted)] dark:border-white/10">
+                            <span className="rounded-lg border border-zinc-200 px-3 py-1 text-xs uppercase tracking-[0.18em] text-[color:var(--muted)] dark:border-white/10">
                                 Default location
                             </span>
                         )}
@@ -279,7 +279,7 @@ export function ExploreAttractions() {
             </section>
 
             {error && (
-                <section className="rounded-[1.4rem] border border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/40 dark:bg-red-950/20">
+                <section className="apple-card border-red-200 bg-red-50 px-4 py-3 dark:border-red-900/40 dark:bg-red-950/20">
                     <p className="text-sm text-red-600 dark:text-red-300">{error}</p>
                 </section>
             )}
@@ -298,4 +298,3 @@ export function ExploreAttractions() {
         </div>
     );
 }
-
