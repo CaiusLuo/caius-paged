@@ -71,9 +71,9 @@ export interface RouteMetadata {
 export const routeMetadata: Record<string, RouteMetadata> = {
     [routes.home]: {
         title: 'Home',
-        description: 'Share technology, thought, and everyday discoveries',
+        description: 'Backend development portfolio with internships, projects, and technical notes',
         showInNav: true,
-        keywords: ['attractions', 'nearby', 'explore', 'location'],
+        keywords: ['portfolio', 'backend', 'agent', 'resume'],
     },
     [routes.explore.index]: {
         title: 'Explore',
@@ -149,4 +149,3 @@ export function buildUrl(
 // ============================================
 
 export type Routes = typeof routes;
-

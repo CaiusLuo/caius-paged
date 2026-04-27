@@ -2,38 +2,38 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-    --background: #ebe6db;
-    --foreground: #14202d;
-    --muted: #5d6672;
+    --background: #f7f7f5;
+    --foreground: #191919;
+    --muted: #63635f;
     --font-sans-ui: 'Aptos', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     --font-mono-ui: 'Cascadia Mono', 'SFMono-Regular', Consolas, monospace;
-    --surface: rgba(248, 244, 236, 0.74);
-    --surface-strong: rgba(244, 240, 232, 0.9);
-    --border: rgba(15, 23, 42, 0.11);
-    --accent: #0f766e;
-    --accent-soft: rgba(15, 118, 110, 0.08);
-    --accent-secondary: #ea7b2b;
-    --hero-primary: rgba(15, 118, 110, 0.09);
-    --hero-secondary: rgba(234, 123, 43, 0.08);
-    --page-sheen: rgba(255, 250, 240, 0.22);
-    --panel-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
-    --action-primary-foreground: #081c1a;
+    --surface: rgba(255, 255, 255, 0.84);
+    --surface-strong: #ffffff;
+    --border: rgba(25, 25, 25, 0.11);
+    --accent: #191919;
+    --accent-soft: rgba(25, 25, 25, 0.06);
+    --accent-secondary: #f0b429;
+    --hero-primary: rgba(25, 25, 25, 0.04);
+    --hero-secondary: rgba(240, 180, 41, 0.12);
+    --page-sheen: rgba(255, 255, 255, 0.6);
+    --panel-shadow: 0 18px 48px rgba(25, 25, 25, 0.08);
+    --action-primary-foreground: #ffffff;
 }
 .dark {
-    --background: #0a1018;
-    --foreground: #eef2f7;
-    --muted: #a6b0bf;
-    --surface: rgba(10, 16, 24, 0.72);
-    --surface-strong: rgba(12, 18, 28, 0.92);
+    --background: #101010;
+    --foreground: #f4f4f2;
+    --muted: #aaa79f;
+    --surface: rgba(24, 24, 24, 0.82);
+    --surface-strong: #1c1c1c;
     --border: rgba(255, 255, 255, 0.1);
-    --accent: #2dd4bf;
-    --accent-soft: rgba(45, 212, 191, 0.14);
-    --accent-secondary: #fb923c;
-    --hero-primary: rgba(45, 212, 191, 0.14);
-    --hero-secondary: rgba(251, 146, 60, 0.12);
-    --page-sheen: rgba(56, 189, 248, 0.03);
+    --accent: #f4f4f2;
+    --accent-soft: rgba(255, 255, 255, 0.08);
+    --accent-secondary: #f0b429;
+    --hero-primary: rgba(255, 255, 255, 0.06);
+    --hero-secondary: rgba(240, 180, 41, 0.12);
+    --page-sheen: rgba(255, 255, 255, 0.03);
     --panel-shadow: 0 20px 60px rgba(0, 0, 0, 0.34);
-    --action-primary-foreground: #ffffff;
+    --action-primary-foreground: #101010;
 }
 
 @theme inline {
@@ -49,11 +49,7 @@ html {
 
 body {
     min-height: 100vh;
-    background:
-        radial-gradient(circle at top left, var(--hero-primary), transparent 34%),
-        radial-gradient(circle at top right, var(--hero-secondary), transparent 30%),
-        linear-gradient(180deg, var(--page-sheen), transparent 26%),
-        var(--background);
+    background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans-ui);
 }
@@ -258,6 +254,565 @@ body {
         var(--surface);
 }
 
+.notion-home {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 1.6rem 0 5rem;
+}
+
+.notion-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.78fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: center;
+    min-height: min(68vh, 640px);
+    padding: clamp(2rem, 4vw, 4rem) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.notion-hero::before {
+    content: "";
+    position: absolute;
+    inset: 1.25rem -1rem auto;
+    height: 18rem;
+    pointer-events: none;
+    background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.22), transparent 72%);
+    opacity: 0.42;
+    animation: gridDrift 18s linear infinite;
+}
+
+.hero-copy {
+    position: relative;
+    max-width: 760px;
+    animation: fadeUp 650ms ease both;
+}
+
+.eyebrow,
+.section-kicker {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.hero-copy h1 {
+    margin-top: 1rem;
+    max-width: 720px;
+    font-size: clamp(2.45rem, 5.4vw, 4.9rem);
+    line-height: 1.02;
+    font-weight: 750;
+    letter-spacing: 0;
+    color: var(--foreground);
+}
+
+.hero-copy h1 span {
+    display: block;
+    color: color-mix(in srgb, var(--foreground) 58%, var(--muted));
+}
+
+.hero-lead {
+    margin-top: 1.2rem;
+    max-width: 620px;
+    font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+    line-height: 1.85;
+    color: var(--muted);
+}
+
+.hero-inline-meta {
+    margin-top: 1.3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.hero-inline-meta span {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--surface-strong) 86%, var(--background));
+    padding: 0.4rem 0.68rem;
+    color: color-mix(in srgb, var(--foreground) 78%, var(--muted));
+    font-size: 0.82rem;
+    font-weight: 650;
+    animation: chipIn 520ms ease both;
+}
+
+.hero-inline-meta span:nth-child(2) {
+    animation-delay: 70ms;
+}
+
+.hero-inline-meta span:nth-child(3) {
+    animation-delay: 140ms;
+}
+
+.hero-inline-meta span:nth-child(4) {
+    animation-delay: 210ms;
+}
+
+.hero-actions {
+    margin-top: 1.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.notion-button {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.94rem;
+    font-weight: 650;
+    line-height: 1.2;
+    transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.notion-button:hover {
+    transform: translateY(-1px);
+}
+
+.notion-button-primary {
+    border: 1px solid var(--foreground);
+    background: var(--foreground);
+    color: var(--background);
+    box-shadow: 0 12px 28px rgba(25, 25, 25, 0.14);
+}
+
+.notion-button-secondary {
+    border: 1px solid var(--border);
+    background: var(--surface-strong);
+    color: var(--foreground);
+}
+
+.notion-button-secondary:hover {
+    border-color: color-mix(in srgb, var(--foreground) 28%, var(--border));
+    background: color-mix(in srgb, var(--surface-strong) 80%, var(--accent-soft));
+}
+
+.hero-resume-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-strong);
+    box-shadow: var(--panel-shadow);
+    animation: floatSoft 7s ease-in-out infinite;
+}
+
+.hero-resume-card::after {
+    content: "";
+    position: absolute;
+    inset: auto 1rem 1rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent-secondary) 50%, transparent), transparent);
+    animation: lineScan 4.8s ease-in-out infinite;
+}
+
+.resume-paper-header {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1rem;
+    background: color-mix(in srgb, var(--surface-strong) 82%, var(--accent-soft));
+}
+
+.resume-paper-header span {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+.resume-paper-body {
+    padding: clamp(1.35rem, 3vw, 2rem);
+}
+
+.resume-paper-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--muted);
+}
+
+.resume-paper-body h2 {
+    margin-top: 0.65rem;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1;
+    font-weight: 750;
+    letter-spacing: 0;
+}
+
+.resume-paper-body > p:not(.resume-paper-label) {
+    margin-top: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.resume-paper-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.resume-paper-grid div {
+    min-width: 0;
+    padding: 1rem;
+    background: var(--background);
+}
+
+.resume-paper-grid div + div {
+    border-left: 1px solid var(--border);
+}
+
+.resume-paper-grid strong,
+.resume-paper-grid span {
+    display: block;
+}
+
+.resume-paper-grid strong {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.resume-paper-grid span {
+    margin-top: 0.45rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+}
+
+.notion-section {
+    padding: clamp(2rem, 5vw, 4rem) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.section-heading {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr) auto;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.section-heading h2 {
+    font-size: clamp(1.65rem, 3vw, 2.65rem);
+    line-height: 1.05;
+    font-weight: 750;
+    letter-spacing: 0;
+}
+
+.section-heading p:not(.section-kicker) {
+    margin-top: 0.8rem;
+    max-width: 660px;
+    line-height: 1.8;
+    color: var(--muted);
+}
+
+.skill-cloud {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.skill-cloud span,
+.resume-tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-strong);
+    padding: 0.45rem 0.7rem;
+    font-size: 0.86rem;
+    font-weight: 620;
+    color: color-mix(in srgb, var(--foreground) 86%, var(--muted));
+}
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    padding: clamp(2rem, 5vw, 4rem) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.notion-card {
+    min-height: 210px;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-strong);
+    padding: 1.25rem;
+    animation: fadeUp 620ms ease both;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.notion-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--foreground) 24%, var(--border));
+    box-shadow: var(--panel-shadow);
+}
+
+.card-number {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.notion-card h2 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 720;
+}
+
+.notion-card p {
+    margin-top: 0.75rem;
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.resume-tabs {
+    margin-top: 2rem;
+    display: inline-flex;
+    gap: 0.35rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-strong);
+    padding: 0.35rem;
+}
+
+.resume-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.38rem;
+    padding: 0.7rem 0.95rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 650;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.resume-tab:hover,
+.resume-tab.is-active {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+.resume-layout {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: minmax(250px, 0.42fr) minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.resume-list,
+.resume-detail-card {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-strong);
+}
+
+.resume-list {
+    padding: 0.6rem;
+}
+
+.resume-list-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.75rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+}
+
+.resume-list-card {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    align-items: center;
+    border-radius: 0.5rem;
+    padding: 0.9rem 0.75rem;
+    text-align: left;
+    color: var(--muted);
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.resume-list-card:hover,
+.resume-list-card.is-active {
+    background: color-mix(in srgb, var(--accent-soft) 72%, var(--surface-strong));
+    color: var(--foreground);
+    transform: translateX(2px);
+}
+
+.resume-card-index {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.resume-list-card strong,
+.resume-list-card small {
+    display: block;
+}
+
+.resume-list-card strong {
+    overflow-wrap: anywhere;
+    font-size: 0.95rem;
+    color: var(--foreground);
+}
+
+.resume-list-card small {
+    margin-top: 0.25rem;
+    line-height: 1.5;
+}
+
+.resume-detail-card {
+    padding: clamp(1.2rem, 2.5vw, 2rem);
+    animation: cardIn 260ms ease both;
+}
+
+.resume-detail-topline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.resume-detail-title {
+    margin-top: 1.2rem;
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+}
+
+.resume-detail-title svg {
+    margin-top: 0.35rem;
+    color: var(--foreground);
+}
+
+.resume-detail-title h3 {
+    font-size: clamp(1.65rem, 3.6vw, 2.6rem);
+    line-height: 1.1;
+    font-weight: 760;
+    letter-spacing: 0;
+}
+
+.resume-detail-title p,
+.resume-meta,
+.resume-summary {
+    color: var(--muted);
+}
+
+.resume-detail-title p {
+    margin-top: 0.45rem;
+}
+
+.resume-meta {
+    margin-top: 1rem;
+    font-size: 0.94rem;
+    font-weight: 650;
+}
+
+.resume-summary {
+    margin-top: 1rem;
+    line-height: 1.85;
+}
+
+.resume-tags {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.resume-highlights {
+    margin-top: 1.4rem;
+    display: grid;
+    gap: 0.85rem;
+}
+
+.resume-highlights li {
+    position: relative;
+    padding-left: 1.25rem;
+    line-height: 1.75;
+    color: color-mix(in srgb, var(--foreground) 88%, var(--muted));
+}
+
+.resume-highlights li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.76em;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: var(--accent-secondary);
+}
+
+.writing-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.writing-card {
+    display: block;
+    min-height: 190px;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--surface-strong);
+    padding: 1.1rem;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.writing-card:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--foreground) 24%, var(--border));
+    box-shadow: var(--panel-shadow);
+}
+
+.writing-card span {
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.writing-card h3 {
+    margin-top: 1.2rem;
+    font-size: 1.15rem;
+    font-weight: 720;
+    line-height: 1.35;
+}
+
+.writing-card p {
+    margin-top: 0.75rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
 .markdown-content {
     color: var(--foreground);
     font-size: 1.02rem;
@@ -424,6 +979,59 @@ body {
     }
 }
 
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+@keyframes floatSoft {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) rotate(-0.4deg);
+    }
+    50% {
+        transform: translate3d(0, -8px, 0) rotate(0.4deg);
+    }
+}
+
+@keyframes chipIn {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 8px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes gridDrift {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 32px 32px;
+    }
+}
+
+@keyframes lineScan {
+    0%,
+    100% {
+        opacity: 0.2;
+        transform: scaleX(0.5);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scaleX(1);
+    }
+}
+
 @media (max-width: 768px) {
     .page-shell {
         width: min(100% - 1rem, 1180px);
@@ -439,8 +1047,56 @@ body {
     }
 }
 
+@media (max-width: 980px) {
+    .notion-hero,
+    .resume-layout,
+    .focus-grid,
+    .writing-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .notion-hero {
+        min-height: auto;
+    }
 
+    .section-heading {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
 
+    .section-heading .notion-button {
+        width: fit-content;
+    }
 
+}
 
+@media (max-width: 640px) {
+    .notion-home {
+        width: min(100% - 1rem, 1120px);
+        padding-top: 1rem;
+    }
+
+    .hero-actions,
+    .resume-tabs {
+        width: 100%;
+    }
+
+    .hero-actions .notion-button,
+    .resume-tab {
+        flex: 1 1 100%;
+    }
+
+    .resume-tabs {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .resume-paper-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .resume-paper-grid div + div {
+        border-top: 1px solid var(--border);
+        border-left: 0;
+    }
+}

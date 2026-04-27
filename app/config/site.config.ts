@@ -5,8 +5,8 @@
 
 export const siteMetadata = {
     name: 'Caius Paged',
-    title: 'Caius | Technology, Thoughts & Everyday Discovery',
-    description: 'A personal site for sharing technology and thought, leaving warm traces, and exploring the beauty of everyday life.',
+    title: 'Caius | Backend Developer & Agent Engineering',
+    description: 'A clean personal portfolio for backend development, Agent engineering, internships, projects, and technical notes.',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     locale: 'en-US',
     themeColor: '#0f172a',
@@ -78,7 +78,6 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
-
 
 
 
